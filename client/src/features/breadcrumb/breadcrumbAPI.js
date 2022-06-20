@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const showbreadcrumb = async (path) => {
+const getBreadcrumb = async (path) => {
   try {
     if (path && Array.isArray(path) && path.length > 0) {
       path = encodeURIComponent(path.join("/"));
@@ -15,7 +15,7 @@ const showbreadcrumb = async (path) => {
 };
 
 const breadcrumbAPI = {
-  showbreadcrumb,
+  getBreadcrumb,
 };
 
 export default breadcrumbAPI;

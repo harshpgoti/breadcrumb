@@ -2,15 +2,13 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import breadcrumbAPI from './breadcrumbAPI';
 
 const initialState = {
-    
     crumbPath:[],
     crumbChildren:[]
 }
 
-export const showbreadcrumb = createAsyncThunk('breadcrumb/showbreadcrumb',async (data,thunkAPI)=>{
+export const showBreadcrumb = createAsyncThunk('breadcrumb/showBreadcrumb',async (data,thunkAPI)=>{
     try{
-        console.log("data",data)
-        let response = await breadcrumbAPI.showbreadcrumb(data);
+        let response = await breadcrumbAPI.getBreadcrumb(data);
 
         if(response.error){
             return thunkAPI.rejectWithValue(response.error)
@@ -30,10 +28,10 @@ export const breadcrumbSlice = createSlice({
     initialState,
     extraReducers:(builder)=>{
         builder
-        .addCase(showbreadcrumb.fulfilled,(state,action)=>{
+        .addCase(showBreadcrumb.fulfilled,(state,action)=>{
             state.crumbChildren=action.payload
         })
-        .addCase(showbreadcrumb.rejected,(state,action)=>{
+        .addCase(showBreadcrumb.rejected,(state,action)=>{
             console.log(action.payload)
         })
     }

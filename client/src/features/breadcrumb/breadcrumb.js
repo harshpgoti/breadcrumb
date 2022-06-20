@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { showbreadcrumb } from './breadcrumbSlice'
+import { showBreadcrumb } from './breadcrumbSlice'
 
 function Breadcrumb() {
 
@@ -9,7 +9,7 @@ function Breadcrumb() {
   const { crumbChildren } = useSelector((state) => state.breadcrumb)
   
   useEffect(()=>{
-      dispatch(showbreadcrumb(crumbsPath));
+      dispatch(showBreadcrumb(crumbsPath));
   },[ crumbsPath ])
   
   const goto = (e) => {
@@ -21,7 +21,7 @@ function Breadcrumb() {
     e.preventDefault()
     crumbsPath.splice(crumbsPath.indexOf(e.target.innerText)+1)
     document.getElementsByClassName("children").innerHTML='';
-    dispatch(showbreadcrumb(crumbsPath));
+    dispatch(showBreadcrumb(crumbsPath));
   }
 
   let children,crumbHtml;
